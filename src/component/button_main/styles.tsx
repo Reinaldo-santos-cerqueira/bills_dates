@@ -22,6 +22,9 @@ import {StyleSheet } from 'react-native';
     textButton:{
         color: "#fff",
         fontSize: 30,
+        textTransform: 'uppercase',
+        letterSpacing: 2,
+        fontWeight: 'bold'
     }
 })
 

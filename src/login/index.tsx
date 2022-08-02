@@ -1,60 +1,115 @@
-import { View, ImageBackground, TouchableOpacity,Text, TextInput } from 'react-native';
-import React , {useState}from 'react';
-import * as Component  from './styles';
-import styles from './styles';
-import { LinearGradient } from 'expo-linear-gradient';
+import React,{useState} from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../../App';
+import ButtonMain from '../component/button_main/index';
+import ButtonSecondary from '../component/button_secondary/';
+import Background from '../component/background/'
+import HalfScreen from '../component/halfScreen/index'
+import {StyleSheet,TextInput,View} from 'react-native'
 import Icon from 'react-native-vector-icons/Entypo';
-import ButtonMain from '../component/button_main';
 
 declare global {
     namespace ReactNavigation {
-        interface RootParamList extends RootStackParamList {}
+        interface RootParamList extends RootStackParamList { }
     }
 }
 
-const Login =() =>{
+const PreLogin = () => {
 
-    //Use state
+    const [inputEmail,setInputEmail] = useState("");
 
-    const [ email , setEmail ] = useState("");
+    const nameIcon = "mail";
 
     const navigation = useNavigation();
 
+    const entrar = () => {
+
+        alert("Entrar");
+
+    }
+
     return (
-        <ImageBackground
-        
-            style={styles.backgroundImage}
-            resizeMode="cover"
-            source={require('../../assets/bg.jpg')}
 
-        >
-           <LinearGradient colors={[ 'transparent' , '#1E2F97']} style={styles.linearGradient}>
+        <Background>
 
-                <View style={styles.halfScreen}>
+            <HalfScreen> 
+
+            </HalfScreen>
+
+            <HalfScreen>
+
+                <View
+
+                    style={styles.areaTextInput}
+
+                >
+                    <Icon 
+                        name={nameIcon}
+                        size={30} 
+                        color="#fff"
+                        style={styles.iconTextInput}
+                    />
+
+                    <TextInput
+
+                        onChangeText={setInputEmail}
+                        value={inputEmail}
+                        placeholder = " Digite o email "
+                        placeholderTextColor={"#fff"}
+                        style={styles.inputText}
+
+                    />
 
                 </View>
 
-                <View style={styles.halfScreen}>
+                <ButtonMain
 
-                    <ButtonMain
-                    
-                        textButton = "Login"
-                        functionOnpress= {()=>
-                            {
-                                alert("Please")
-                            }
-                        }
+                    textButton="Entrar"
+                    functionOnpress={() => { entrar() }}
 
-                    />                        
-                </View>
+                />
 
-           </LinearGradient>
-           
-        </ImageBackground>
+            </HalfScreen>
+
+        </Background>
+
     );
 
 }
 
-export default Login;
+const styles = StyleSheet.create({
+
+    areaTextInput: {
+        width: "70%",
+        height: 50,
+        borderRadius:10,
+        borderWidth:1,
+        borderColor:"#fff",
+        padding:5,
+        //justifyContent: "space-between",
+        alignItems: "center",
+        display: "flex",
+        flexDirection: "row",
+        marginBottom:20,
+        maxWidth:"70%"
+    },
+    iconTextInput:{
+
+        width: 'auto',
+        marginLeft:10,
+        marginRight:10,
+
+    },
+    inputText:{
+
+        fontSize:20,
+        color: '#FFFFFF',
+        maxWidth: '70%',
+        width: '70%'
+
+    }
+
+})
+
+export default PreLogin;
+
