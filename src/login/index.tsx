@@ -5,8 +5,8 @@ import ButtonMain from '../component/button_main/index';
 import ButtonSecondary from '../component/button_secondary/';
 import Background from '../component/background/'
 import HalfScreen from '../component/halfScreen/index'
-import {StyleSheet,TextInput,View} from 'react-native'
-import Icon from 'react-native-vector-icons/Entypo';
+import Input from '../component/input/index'
+import ButtonOnlyText from '../component/buttonOnlyText/index'
 
 declare global {
     namespace ReactNavigation {
@@ -18,9 +18,19 @@ const PreLogin = () => {
 
     const [inputEmail,setInputEmail] = useState("");
 
-    const nameIcon = "mail";
+    const placeholderEmail = "Digite seu email";
+
+    const nameIconEmail = "mail";
+
+    const [inputPassword,setInputPassword] = useState("");
+
+    const placeholderPassword = "Digite sua senha";
+
+    const nameIconPassword = "key";
 
     const navigation = useNavigation();
+
+    const textButtonOnlyText = "Problemas com o login?Clique aqui"
 
     const entrar = () => {
 
@@ -28,6 +38,7 @@ const PreLogin = () => {
 
     }
 
+    const textAlign = "right";
     return (
 
         <Background>
@@ -38,29 +49,31 @@ const PreLogin = () => {
 
             <HalfScreen>
 
-                <View
+                <Input
+                
+                    nameIcon={nameIconEmail}
+                    setInput={()=>{setInputEmail}}
+                    input={inputEmail}
+                    placeHolder={placeholderEmail}
+                
+                />
 
-                    style={styles.areaTextInput}
+                <Input
+                
+                    nameIcon={nameIconPassword}
+                    setInput={()=>{setInputPassword}}
+                    input={inputPassword}
+                    placeHolder={placeholderPassword}
+                
+                />
 
-                >
-                    <Icon 
-                        name={nameIcon}
-                        size={30} 
-                        color="#fff"
-                        style={styles.iconTextInput}
-                    />
+                <ButtonOnlyText
 
-                    <TextInput
+                    textButton={textButtonOnlyText}
+                    functionOnpress={ ()=> alert(" Please enter ") }
+                    textAlignConst={textAlign}
 
-                        onChangeText={setInputEmail}
-                        value={inputEmail}
-                        placeholder = " Digite o email "
-                        placeholderTextColor={"#fff"}
-                        style={styles.inputText}
-
-                    />
-
-                </View>
+                />
 
                 <ButtonMain
 
@@ -76,40 +89,6 @@ const PreLogin = () => {
     );
 
 }
-
-const styles = StyleSheet.create({
-
-    areaTextInput: {
-        width: "70%",
-        height: 50,
-        borderRadius:10,
-        borderWidth:1,
-        borderColor:"#fff",
-        padding:5,
-        //justifyContent: "space-between",
-        alignItems: "center",
-        display: "flex",
-        flexDirection: "row",
-        marginBottom:20,
-        maxWidth:"70%"
-    },
-    iconTextInput:{
-
-        width: 'auto',
-        marginLeft:10,
-        marginRight:10,
-
-    },
-    inputText:{
-
-        fontSize:20,
-        color: '#FFFFFF',
-        maxWidth: '70%',
-        width: '70%'
-
-    }
-
-})
 
 export default PreLogin;
 

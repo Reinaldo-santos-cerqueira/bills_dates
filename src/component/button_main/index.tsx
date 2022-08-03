@@ -10,26 +10,31 @@ interface buttonProps {
 }
 
 
-export default function ButtonMain({functionOnpress,textButton} : buttonProps )  {
+const ButtonMain = ({functionOnpress,textButton} : buttonProps ) =>  {
 
 const onPressFunction = () => {
 
   functionOnpress();
 
-  //console.log(textButton);
-
 }
 
   return (
     <TouchableOpacity
+
       style={styles.buttonMain}
       onPress={ ()=> onPressFunction() }
+
     >
 
       <Text style={styles.textButton}>
+
         {textButton}
+        
       </Text>
 
     </TouchableOpacity>
+    
   )
 }
+
+export default ButtonMain;
